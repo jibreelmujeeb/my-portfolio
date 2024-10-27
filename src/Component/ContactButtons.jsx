@@ -25,13 +25,13 @@ const ContactButtons = () => {
           </a>
         </div>
         <div>
-          <a href="@JibreelMuj25619">
+          <a href="https://x.com/@JibreelMuj25619">
             <RiTwitterXLine className=" text-dark" size={36} />
           </a>
         </div>
         <div>
           
-          <a href="">
+          <a href="https://www.facebook.com/mujeeb itanolu abu umair">
             <FaFacebookMessenger className="text-dark" size={36} />
           </a>
         </div>
