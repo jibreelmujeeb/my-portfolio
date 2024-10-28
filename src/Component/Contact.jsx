@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import img from "../../src/assets/team.png";
 import Aos from "aos";
-import { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const [fullName, setFullName] = useState("");
@@ -10,34 +11,52 @@ const Contact = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    Aos.init({
-      duration: 3000,
-    });
+    Aos.init({ duration: 3000 });
   }, []);
 
-  const get = () => {
-    if (fullName == "" || email == "" || organization == "" || message == "") {
-      alert("Please fill all the fields");
+  const get = async () => {
+    if (fullName === "" || email === "" || organization === "" || message === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Incomplete Form",
+        text: "Please fill all the fields",
+      });
     } else {
-      let data = { fullName, email, organization, message };
+      try {
+        await axios.post("http://localhost:5000/send-email", {
+          fullName,
+          email,
+          organization,
+          message,
+        });
 
-      setFullName("");
-      setEmail("");
-      setOrganization("");
-      setMessage("");
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "Messaged sent successfully",
+        });
+
+        setFullName("");
+        setEmail("");
+        setOrganization("");
+        setMessage("");
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Failed to send the message. Please try again later.",
+        });
+      }
     }
   };
 
   return (
     <div data-aos="flip-up" id="Contact" className="bg-green-950 lg:flex">
       <div className="grid lg:grid-cols-2">
-        <div className=" mt-10 lg:ms-28 ms-8">
+        <div className="mt-10 lg:ms-28 ms-8">
           <div className="text-white">CONTACT ME</div>
           <div className="my-2 w-80">
-            <label className="text-white" htmlFor="">
-              Full name
-            </label>
-            <br />
+            <label className="text-white" htmlFor="fullName">Full name</label>
             <input
               className="border w-full rounded"
               type="text"
@@ -47,10 +66,7 @@ const Contact = () => {
             />
           </div>
           <div className="my-2 w-80">
-            <label className="text-white" htmlFor="">
-              Email
-            </label>
-            <br />
+            <label className="text-white" htmlFor="email">Email</label>
             <input
               className="w-full rounded"
               type="text"
@@ -60,10 +76,7 @@ const Contact = () => {
             />
           </div>
           <div className="my-2 w-80">
-            <label className="text-white" htmlFor="">
-              Organization
-            </label>
-            <br />
+            <label className="text-white" htmlFor="organization">Organization</label>
             <input
               className="w-full rounded"
               type="text"
@@ -73,10 +86,7 @@ const Contact = () => {
             />
           </div>
           <div className="my-2 w-80">
-            <label className="text-white" htmlFor="">
-              Message
-            </label>
-            <br />
+            <label className="text-white" htmlFor="message">Message</label>
             <textarea
               className="w-full rounded"
               onChange={(e) => setMessage(e.target.value)}
@@ -94,7 +104,7 @@ const Contact = () => {
           </button>
         </div>
         <div>
-          <img src={img} alt="" width={700} />
+          <img src={img} alt="Team" width={700} />
         </div>
       </div>
     </div>

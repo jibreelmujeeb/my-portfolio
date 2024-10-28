@@ -6,7 +6,7 @@ import { GrLinkedin } from "react-icons/gr";
 
 
 
-const ContactButtons = () => {
+const ContactButtons = () => { 
   return (
     <div>
       {" "}
