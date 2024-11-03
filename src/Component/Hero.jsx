@@ -1,6 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
 import "aos/dist/aos.css";
-import img from "../../src/assets/logo.png";
+import img from "../../src/assets/picture.jpg";
 
 const Hero = () => {
   return (
