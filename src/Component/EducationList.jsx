@@ -1,6 +1,6 @@
-import img from "../../src/assets/sqi.png";
-import img1 from "../../src/assets/Alison.png";
-import img2 from "../../src/assets/udemy.png";
+import img from "../assets/sqi.png";
+import img1 from "../assets/Alison.png";
+import img2 from "../assets/udemy.png"
 
 export const education = [
   {
