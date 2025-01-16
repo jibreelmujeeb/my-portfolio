@@ -23,7 +23,7 @@ const Contact = () => {
       });
     } else {
       try {
-        await axios.post("https://myportfoliobackend-5.onrender.com", {
+        await axios.post("https://myportfoliobackend-5.onrender.com/send-email", {
           fullName,
           email,
           organization,
