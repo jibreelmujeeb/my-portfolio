@@ -1,5 +1,5 @@
 import img from "../assets/sqi.png";
-import img1 from "../assets/Alison.png";
+import img1 from "../assets/alison.png";
 import img2 from "../assets/udemy.png"
 
 export const education = [
